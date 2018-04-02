@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Publica</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" href="images/favico.ico">
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css"  href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPkWmUcfyfhk6qY9AlRnxfutGMI_nYtRA&libraries=places"></script>
+  	
+  	<script type="text/javascript" src="jQuery/jquery.js"></script>
+  	<script type="text/javascript" src="js/logJS.js"></script>
+  	<script type="text/javascript" src="js/PublicaJS.js"></script>
+ 
+</head>
+
+<body>
+    <!-- Inicia Barra de navegación principal -->
+	<nav class="navbar navbar-default navbar-fixed-top dark-primary-color">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="index.html">Mercado de Depas Tec</a>
+	    </div>
+	    <ul class="nav navbar-nav" style="text-align: : center">
+	      <li><a href="index.html">Inicio</a></li>
+	      <li><a href="Encuentra.html">Encuentra</a></li>
+	      <li class="active"><a href="#">Publica</a></li>
+	    </ul>
+	     <!-- Botones de iniciar sesión y crear cuenta -->
+	    <ul id="LogButtons" class="nav navbar-nav navbar-right text-primary-color">
+      	 <li><a class="btn" data-toggle="modal" data-target="#CrearCuenta"><span class="glyphicon glyphicon-user"></span> Crear cuenta</a></li>
+     	 <li><a class="btn" data-toggle="modal" data-target="#IniciarSesion"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+    	</ul>
+    	<ul id="LoggedInButtons" class="nav navbar-nav navbar-right text-primary-color hiddenElement">
+            <li><a class="btn dropdown-toggle" data-toggle="dropdown" id="LoggedNombre"></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="Perfil.html">Mi Perfil</a></li>
+				  <li><a href="Propiedades.html">Mis Propiedades</a></li>
+				</ul>
+			</li>
+
+           	 <li><a class="btn" id="LogOutButton"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+          </ul>
+	  </div>
+	</nav>
+    <!-- Termina barra de navegación principal -->
+
+	<!--Breaks sumamente y extrañamente necesarios-->
+	<br><br><br><br>
+
+	<!--Inicia contenedor pidiendo iniciar sesión o crear cuenta-->
+	<div class="row" id="smallcontainer" style="height: 100%">
+		<div class="col-xs-2">
+		</div>
+		<div class="col-xs-8">
+			<h1>Por favor inicia sesión para poder publicar tu propiedad</h1>
+		</div>
+		<div class="col-xs-2">
+		</div>
+
+
+	</div>
+	<!--Termina contenedor pidiendo iniciar sesión o crear cuenta -->
+
+	<!--Inicia contenedor con todos los elementos de publica, 2 columnas vacias, 4 columnas para la forma, 4 columnas para el mapa, 2 columnas vacias-->
+	<div class="row hiddenElement" id="bigcontainer" style="height: 100%">
+		<div class="col-xs-2">
+		</div>
+
+		<div class="col-xs-4">
+			<div class="form-group">
+		      <label for="direccion">Dirección: </label>
+		      <input placeholder="Introduce una ubicación"  type="text" class="form-control" id="direccion" name="direccion">
+		      <span id="direccionError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+		    
+		    <div class="form-group">
+		      <label for="precio">Precio: </label>
+		      <input placeholder="$$$"  type="number" class="form-control" id="precio" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		      <span id="PrecioError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+		    
+			<div class="form-group">
+		      <label for="qRooms">Número de habitaciones: </label>
+		      <input type="number" class="form-control" id="qRooms" name="quantity" min="1" max="10" placeholder="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		      <span id="qRoomsError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+
+		    <div class="form-group">
+		      <label for="qBath">Numero de baños: </label>
+		      <input type="number" class="form-control" id="qBath" name="quantity" min="1" max="10" placeholder="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		      <span id="qBathError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+
+		    <div class="form-group">
+		      <label for="cTime">Meses obligatorios de contrato:</label>
+		      <input type="number" class="form-control" id="cTime"  name="quantity" min="0" max="24" placeholder="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		      <span id="cTimeError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+
+			<div class="form-group">
+		      <label for="qParking">Lugares de estacionamiento: </label>
+		      <input type="number" class="form-control" id="qParking"  name="quantity" min="0" max="5" placeholder="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		      <span id="qParkingError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+		    
+		    <div class="form-group">
+		      <label for="servicios">Servicios incluidos: (opcional)</label>
+		      <p>
+		            <input type="checkbox" name="servicios" value="agua" oninput="init()">Agua
+		            <input type="checkbox" name="servicios" value="luz" oninput="init()">Luz
+		            <input type="checkbox" name="servicios" value="gas" oninput="init()">Gas
+		            <input type="checkbox" name="servicios" value="internet" oninput="init()">Internet
+		            <input type="checkbox" name="servicios" value="tv" oninput="init()">Televisión
+		            <input type="checkbox" name="servicios" value="telefono" oninput="init()">Telefono
+		            <input type="checkbox" name="servicios" value="limpieza" oninput="init()">Limpieza
+		      </p>
+		      <span id="PrecioError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+
+		    <div class="form-group">
+		      <label for="chPets">¿Se aceptan mascotas? </label>
+		      <span id="chPetsError" class="hiddenElement error">Campo obligatorio</span>
+		      <p>
+		      <input type="radio" value="0" name="chPets">No  
+		      <input type="radio" value="1" name="chPets">Si
+		      </p>
+		    </div>
+
+		    <div class="form-group">
+		      <label for="chFurniture">¿Está amueblado?</label>
+		      <span id="chFurnitureError" class="hiddenElement error">Campo obligatorio</span>
+		      <p>
+		      <input type="radio" value="Y" name="chFurniture">Si 
+		      <input type="radio" value="S" name="chFurniture">Semi
+		      <input type="radio" value="N" name="chFurniture">No  
+		      </p>
+		    </div>
+
+		    <div class="form-group">
+		      <label for="Tipo">Tipo: </label>
+		      <span id="TipoError" class="hiddenElement error">Campo obligatorio</span>
+		      <p>
+		      <input type="radio" value="C" name="Tipo"> Casa
+		      <input type="radio" value="D" name="Tipo"> Departamento
+		      </p>
+		    </div>
+		    
+		    <div class="form-group">
+		      <label for="descripcion">Descripción: (opcional)</label><br />
+		      <textarea rows="4" cols="70" id="descripcion"></textarea>
+		      <span id="descripcionError" class="hiddenElement error">Campo obligatorio</span>
+		    </div>
+				
+		    <div class="form-group">
+				<input id="sortpicture" type="file" name="sortpic" />
+		    </div>
+
+			<div class="btn-center">
+		    <button type="submit" id="PublishButton" class="btn btn-success">Publicar</button>
+		    </div>	
+		</div>
+
+		<div class="col-xs-4" id="MapaEncuentra">
+			<button type="submit" id="createMap" class="btn btn-info">Cargar Mapa</button>
+		    <div id="map"></div> 
+		</div>
+
+		<div class="col-xs-2">
+		</div>
+	</div>
+	<!--Termina contenedor con todos los elementos de publica, 2 columnas vacias en los extremos, 4 columnas para la forma y 4 para el mapa.-->
+  
+	<!--Inicia Modal de crear cuenta-->
+	<div class="modal fade" id="CrearCuenta" role="dialog">
+		<div class="modal-dialog">
+		  <!-- Contenido de modal -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      <h4 class="modal-title">Crear cuenta</h4>
+		    </div>
+
+		    <div class="modal-body">
+				    <div class="form-group">
+				      <label for="nombre">Nombre:</label>
+				      <input type="text" class="form-control" id="nombre" placeholder="Escribir nombre" name="nombre">
+				      <span id="nameError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="apellido">Apellidos:</label>
+				      <input type="text" class="form-control" id="apellido" placeholder="Escribir apellidos" name="apellido">
+				      <span id="lastnameError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="email">Correo:</label>
+				      <input type="email" class="form-control" id="email" placeholder="Escribir correo" name="email">
+				      <span id="EmailError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+					<div class="form-group">
+				      <label for="telefono">Telefono:</label>
+				      <input type="text" class="form-control" id="telefono" placeholder="Escribir telefono" name="telefono">
+				      <span id="TelefonoError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+		            <div class="form-group">
+				      <label>Busco Pagar en renta:</label><br />
+		              <label for="MinRentToPay">Minimo:</label>
+				      <input type="number" class="form-control" id="MinRentToPay" placeholder="$$$" name="MinRentToPay" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		              <label for="MaxRentToPay">Maximo:</label>
+		              <input type="number" class="form-control" id="MaxRentToPay" placeholder="$$$" name="MaxRentToPay" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwd">Contraseña:</label>
+				      <input type="password" class="form-control" id="pwd" placeholder="Escribir contraseña" name="pwd">
+				      <span id="passwordError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwd2">Confirmar contraseña:</label>
+				      <input type="password" class="form-control" id="pwd2" placeholder="Escribir contraseña" name="pwd2">
+				      <span id="passwordError2" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <p id="gender"><b>Género: </b><span id="genderError" class="hiddenElement error">Campo obligatorio</span><br>
+				      <input type="radio" value="M" name="gender"> Masculino<br>
+				      <input type="radio" value="F" name="gender"> Femenino
+				      </p>
+				    </div>
+
+					<span class="btn-center">
+				    	<button type="submit" id="submitForm1" class="btn btn-success">Crear cuenta</button>
+				    </span>
+		    </div>
+
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		    </div>
+		  </div>  
+		</div>
+	</div>
+	<!--Termina modal de cerar cuenta-->
+
+	<!--Inicia  modal de iniciar sesion-->
+	<div class="modal fade" id="IniciarSesion" role="dialog">
+		<div class="modal-dialog">
+		  <!-- Contenido de modal -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      <h4 class="modal-title">Iniciar Sesión</h4>
+		    </div>
+
+		    <div class="modal-body">
+				    <div class="form-group">
+				      <label for="emaillogin">Correo:</label>
+				      <input type="email" class="form-control" id="emaillogin" placeholder="Escribir correo" name="email">
+				      <span id="correologinerror" class="hiddenElement error">Por favor escriba su correo.</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwdlogin">Contraseña:</label>
+				      <input type="password" class="form-control" id="pwdlogin" placeholder="Escribir contraseña" name="pwd">
+				      <span id="pwdloginerror" class="hiddenElement error">Por favor escriba su contraseña.</span>
+				    </div>
+
+				    <div class="form-group">
+				    	<input type="checkbox" name="rememberMe" id="rememberMe"/> Recuerdame<br>
+				    </div>
+
+				    <button type="submit" id="submitForm2" class="btn btn-success">Iniciar sesión</button>
+		    </div>
+
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		    </div>
+		  </div>  
+		</div>
+	</div>
+	<!--Termina modal de iniciar sesion-->
+	
+	<!--Inicia Footer-->
+	<footer class= "dark-primary-color">
+            <div class="row">
+                <div class= "col-xs-3">
+                    <ul class="social-links">
+                        <li><a href="www.facebook.com"><i class="ion-social-facebook icon"></i></a></li>
+                        <li><a href="www.twitter.com"><i class="ion-social-twitter icon"></i></a></li>
+                        <li><a href="www.instagram.com"><i class="ion-social-instagram icon"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+                	<p class="creators">David Souza & Hernan Iruegas 2017</p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="copyright">&copy;Copyright</p>
+                </div>
+            </div>
+  	</footer>
+  	<!--Termina Footer-->
+</body>
+
+</html>

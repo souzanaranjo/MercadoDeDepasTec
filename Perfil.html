@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Perfil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="images/favico.ico">
+    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css"  href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> 
+
+    <script type="text/javascript" src="jQuery/jquery.js"></script>
+    <script type="text/javascript" src="js/PerfilJS.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <!-- Inicia Barra de navegación principal -->
+    <nav class="navbar navbar-default navbar-fixed-top dark-primary-color">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand text-primary-color" href="index.html">Mercado de Depas Tec</a>
+          </div>
+          <ul class="nav navbar-nav text-primary-color" style="text-align: : center">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="Encuentra.html">Encuentra</a></li>
+            <li><a href="Publica.html">Publica</a></li>
+          </ul>
+
+          <ul id="LoggedInButtons" class="nav navbar-nav navbar-right text-primary-color">
+            <li><a class="btn dropdown-toggle" data-toggle="dropdown" id="LoggedNombre"></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="Perfil.html">Mi Perfil</a></li>
+				  <li><a href="Propiedades.html">Mis Propiedades</a></li>
+				</ul>
+			</li>
+
+           	 <li><a class="btn" id="LogOutButton"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+          </ul>
+        </div>
+    </nav>
+    <!-- Termina barra de navegación principal -->
+
+
+    <div id="div-container">
+      <h1>Mi perfil</h1>
+      <div class="row">
+        <div class="col-xs-3"></div>
+        <div id="profile-info" class="col-xs-6">
+          <p class="perfil-input" id="perfil-nombre">Nombre: 
+            <input class="profile-info-input" id="input-nombre" type="text" name="profile-nombre">
+          </p>
+          <p class="perfil-input" id="perfil-apellido">Apellido(s): 
+            <input class="profile-info-input" id="input-apellido" type="text" name="profile-apellido">
+          </p>
+
+          <p class="perfil-input" id="perfil-correo">Correo electrónico: 
+            <input class="profile-info-input" id="input-correo" type="text" name="profile-correo">
+          </p>
+          <p class="perfil-input" id="perfil-telefono">Teléfono:
+            <input class="profile-info-input" id="input-telefono" type="number" name="profile-telefono">
+          </p>
+          <p><b>Actualiza el precio mínimo y máximo a pagar para ser encontrado por otros usuarios buscando roomies</b></p>
+          <p class="perfil-input" id="perfil-minpay">Precio mínimo a pagar: 
+            <input class="profile-info-input" id="input-minpay" type="number" name="profile-minpay">
+          </p>
+          <p class="perfil-input" id="perfil-maxpay">Precio máximo a pagar: 
+            <input class="profile-info-input" id="input-maxpay" type="number" name="profile-maxpay">
+          </p>
+
+          <div class="center-button">
+            <button class="btn btn-info" type="submit">Actualizar datos</button>
+          </div>
+
+        </div>
+        <div class="col-xs-3"></div>
+      </div>
+
+    </div>
+
+    <!--Inicia Footer-->
+	<footer class= "dark-primary-color">
+            <div class="row">
+                <div class= "col-xs-3">
+                    <ul class="social-links">
+                        <li><a href="www.facebook.com"><i class="ion-social-facebook icon"></i></a></li>
+                        <li><a href="www.twitter.com"><i class="ion-social-twitter icon"></i></a></li>
+                        <li><a href="www.instagram.com"><i class="ion-social-instagram icon"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+                	<p class="creators">David Souza & Hernan Iruegas 2017</p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="copyright">&copy;Copyright</p>
+                </div>
+            </div>
+  	</footer>
+  	<!--Termina Footer-->
+</body>
+
+</html>

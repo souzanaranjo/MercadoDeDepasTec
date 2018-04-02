@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Encuentra</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" href="images/favico.ico">
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css"  href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCPkWmUcfyfhk6qY9AlRnxfutGMI_nYtRA"></script>
+    
+    <script type="text/javascript" src="jQuery/jquery.js"></script>
+	<script type="text/javascript" src="js/logJS.js"></script>
+  	<script type="text/javascript" src="js/EncuentraJS.js"></script> 
+</head>
+
+<body>
+
+	<!--Inicia Barra principal de navegacion-->
+	<nav class="navbar navbar-default navbar-fixed-top dark-primary-color">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="index.html">Mercado de Depas Tec</a>
+	    </div>
+	    <ul class="nav navbar-nav" style="text-align: : center">
+	      <li><a href="index.html">Inicio</a></li>
+	      <li class="active"><a href="Encuentra.html">Encuentra</a></li>
+	      <li><a href="Publica.html">Publica</a></li>
+	    </ul>
+	    <!-- Botones de iniciar sesión y crear cuenta -->
+	    <ul id="LogButtons" class="nav navbar-nav navbar-right text-primary-color">
+      	 <li><a class="btn" data-toggle="modal" data-target="#CrearCuenta"><span class="glyphicon glyphicon-user"></span> Crear cuenta</a></li>
+     	 <li><a class="btn" data-toggle="modal" data-target="#IniciarSesion"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+    	</ul>
+    	<ul id="LoggedInButtons" class="nav navbar-nav navbar-right text-primary-color hiddenElement">
+            <li><a class="btn dropdown-toggle" data-toggle="dropdown" id="LoggedNombre"></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="Perfil.html">Mi Perfil</a></li>
+				  <li><a href="Propiedades.html">Mis Propiedades</a></li>
+				</ul>
+			</li>
+
+           	 <li><a class="btn" id="LogOutButton"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
+          </ul>
+	  </div>
+	</nav>
+	<!--Termina barra principal de navegación-->
+        
+    <!--Inicia Barra de navegacion secundaria de Encuentra.html--> 
+	<nav class= "navEncuentra ">
+		<ul id="subnav">
+			<li class="Mapa selected">Mapa</li>
+			<li class="Lista">Lista</li>
+			<li class="Favoritos" id="BotonFavoritos">Favoritos</li>
+			<li class="Roomies">Roomies</li>
+		</ul>
+	</nav>
+	<!--Termina Barra de navegacion secundaria de Encuentra.html--> 
+
+	<!--Inicia Contenedor con filtros, mapa, lista, roomies y favoritos-->
+    <div id="wrapperEncuentra">
+    
+	    <!--Inicia la seccion de filtros-->
+		<div id="filtros">
+			<fieldset>
+					<h4>Búsqueda personalizada</h4>
+					<!--Precio minimo de propiedad-->
+					<div class="form-group">
+						      <label for="minprecio">Precio mínimo: </label><span id="minprecioError" class="error hiddenElement"> Campo obligatorio</span>
+						      <input placeholder="Precio en pesos"  type="number" class="form-control" id="minprecio" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+					</div>
+					<!--Precio maximo de propiedad-->
+					<div class="form-group">
+						      <label for="maxprecio">Precio máximo: </label><span id="maxprecioError" class="error hiddenElement"> Campo obligatorio</span>
+						      <input placeholder="Precio en pesos"  type="number" class="form-control" id="maxprecio" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+					</div>
+					<!--Distrancia maxima al Tec-->
+					<div class="form-group">
+						      <label for="distance">Distancia máxima al Tec: </label><span id="distanceError" class="error hiddenElement"><br> Campo obligatorio</span>
+						      <input placeholder="Distancia en metros"  type="number" class="form-control" id="distance" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+					</div>
+					<!--Numero de recamaras-->
+					<div class="form-group">
+						      <label for="rooms">Número de recámaras: </label><span id="roomsError" class="error hiddenElement"><br> Campo obligatorio</span>
+						      <input placeholder="Número de recámaras"  type="number" class="form-control" id="rooms" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+					</div>
+					<!--Tipo de inmueble. Casa, Departamento o Cualquiera-->
+					<div class="form-group">
+						      <label for="Tipo">Tipo: </label>
+						      <p>
+						      <input type="radio" value="C" name="Tipo"> Casa
+						      <input type="radio" value="D" name="Tipo"> Departamento
+						      <input type="radio" value="T" name="Tipo" checked="checked"> Cualquiera
+						      </p>
+					</div>
+					<!--Prioridad de lugar de estacionamiento o sin prioridad-->
+					<div class="form-group">
+						      <label for="Parking">Lugar de estacionamiento: </label>
+						      <p style="text-align: center">
+						      <input type="radio" value="Y" name="Parking"> Si
+						      <input type="radio" value="T" name="Parking" checked="checked"> Indiferente
+						      </p>
+					</div>
+					<!--Amueblado, semi amueblado, no amueblado, indiferente -->
+					<div class="form-group">
+						      <label for="chFurniture">¿Está amueblado?</label>
+						      <p style="text-align: center">
+						      <input class="radioButton" type="radio" value="Y" name="chFurniture">Si     
+						      <input class="radioButton" type="radio" value="S" name="chFurniture">Semi
+						      <input class="radioButton" type="radio" value="N" name="chFurniture">No  
+						      <input class="radioButton" type="radio" value="T" name="chFurniture" checked="checked">Cualquiera
+						      </p>
+					</div>
+					<!--Boton para filtrar propiedades-->
+					<span class="btn-center">
+						    <button type="submit" id="SearchhButton" class="btn btn-success">Buscar</button>
+					</span>
+            </fieldset>
+		</div>
+		<!--Termina seccion de filtros-->
+
+		<!--Seccion de mapa con las propiedades graficadas con pines, primero carga todas sin filtros y despues ya se filtran dependiendo de los parametros-->
+		<div id="Mapa" class="currentSelection">
+			<div id="map"></div>
+	    </div>
+
+		<!--Seccion donde se muestran las mismas propiedades que en el mapa pero en forma de lista-->
+		<div id="Lista" class="hiddenSection">
+			<div id="lista"></div>                
+	    </div>
+		
+		<!--Seccion donde el usuario puede ver todas sus propiedades que ha marcado como favoritas-->
+		<div id="Favoritos" class="hiddenSection">
+			<div id="smallDivFavoritos">
+				<h1 style="text-align: center">Por favor inicia sesión para acceder a esta funcionalidad</h1>
+			</div>
+	        <div class="hiddenElement" id="listaFav"></div> 
+		</div>
+		
+		<!--Seccion donde el usuario puede encontrar roomies que esten dispuestos a pagar determinado precio-->
+		<div id="Roomies" class="hiddenSection">
+	        <div class="col-xs-3"></div>
+	        <div class="col-xs-6">
+	            <div class="form-group">
+	                <label for="willingRent">Busco a un roomie que quiera pagar esto: </label>
+	                <input placeholder="$$$"  type="number" class="form-control" id="willingRent" name="willingRent">
+	                <span id="willingRentError" class="hiddenElement error">Campo obligatorio</span>
+	                <br>
+	                <button type="submit" id="submitRent" class="btn btn-success">Buscar</button>
+	                <br><br>
+	                <div id="listRoomies"></div>
+	            </div>
+	        </div>
+	        <div class="col-xs-3"></div>
+		</div>
+    </div>
+    <!--Termina Contenedor con filtros, mapa, lista, roomies y favoritos-->
+	
+	<!--Inicia Modal de crear cuenta-->
+	<div class="modal fade" id="CrearCuenta" role="dialog">
+		<div class="modal-dialog">
+		  <!-- Contenido de modal -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      <h4 class="modal-title">Crear cuenta</h4>
+		    </div>
+
+		    <div class="modal-body">
+				    <div class="form-group">
+				      <label for="nombre">Nombre:</label>
+				      <input type="text" class="form-control" id="nombre" placeholder="Escribir nombre" name="nombre">
+				      <span id="nameError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="apellido">Apellidos:</label>
+				      <input type="text" class="form-control" id="apellido" placeholder="Escribir apellidos" name="apellido">
+				      <span id="lastnameError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="email">Correo:</label>
+				      <input type="email" class="form-control" id="email" placeholder="Escribir correo" name="email">
+				      <span id="EmailError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+					<div class="form-group">
+				      <label for="telefono">Telefono:</label>
+				      <input type="text" class="form-control" id="telefono" placeholder="Escribir telefono" name="telefono">
+				      <span id="TelefonoError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+		            <div class="form-group">
+				      <label>Busco Pagar en renta:</label><br />
+		              <label for="MinRentToPay">Minimo:</label>
+				      <input type="number" class="form-control" id="MinRentToPay" placeholder="$$$" name="MinRentToPay" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		              <label for="MaxRentToPay">Maximo:</label>
+		              <input type="number" class="form-control" id="MaxRentToPay" placeholder="$$$" name="MaxRentToPay" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwd">Contraseña:</label>
+				      <input type="password" class="form-control" id="pwd" placeholder="Escribir contraseña" name="pwd">
+				      <span id="passwordError" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwd2">Confirmar contraseña:</label>
+				      <input type="password" class="form-control" id="pwd2" placeholder="Escribir contraseña" name="pwd2">
+				      <span id="passwordError2" class="hiddenElement error">Campo obligatorio</span>
+				    </div>
+
+				    <div class="form-group">
+				      <p id="gender"><b>Género: </b><span id="genderError" class="hiddenElement error">Campo obligatorio</span><br>
+				      <input type="radio" value="M" name="gender"> Masculino<br>
+				      <input type="radio" value="F" name="gender"> Femenino
+				      </p>
+				    </div>
+
+					<span class="btn-center">
+				    	<button type="submit" id="submitForm1" class="btn btn-success">Crear cuenta</button>
+				    </span>
+		    </div>
+
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		    </div>
+		  </div>  
+		</div>
+	</div>
+	<!--Termina modal de cerar cuenta-->
+
+	<!--Inicia  modal de iniciar sesion-->
+	<div class="modal fade" id="IniciarSesion" role="dialog">
+		<div class="modal-dialog">
+		  <!-- Contenido de modal -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      <h4 class="modal-title">Iniciar Sesión</h4>
+		    </div>
+
+		    <div class="modal-body">
+				    <div class="form-group">
+				      <label for="emaillogin">Correo:</label>
+				      <input type="email" class="form-control" id="emaillogin" placeholder="Escribir correo" name="email">
+				      <span id="correologinerror" class="hiddenElement error">Por favor escriba su correo.</span>
+				    </div>
+
+				    <div class="form-group">
+				      <label for="pwdlogin">Contraseña:</label>
+				      <input type="password" class="form-control" id="pwdlogin" placeholder="Escribir contraseña" name="pwd">
+				      <span id="pwdloginerror" class="hiddenElement error">Por favor escriba su contraseña.</span>
+				    </div>
+
+				    <div class="form-group">
+				    	<input type="checkbox" name="rememberMe" id="rememberMe"/> Recuerdame<br>
+				    </div>
+
+				    <button type="submit" id="submitForm2" class="btn btn-success">Iniciar sesión</button>
+		    </div>
+
+		    <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		    </div>
+		  </div>  
+		</div>
+	</div>
+	<!--Termina modal de iniciar sesion-->
+	
+	<!--Inicia Footer-->
+	<footer class= "dark-primary-color">
+            <div class="row">
+                <div class= "col-xs-3">
+                    <ul class="social-links">
+                        <li><a href="www.facebook.com"><i class="ion-social-facebook icon"></i></a></li>
+                        <li><a href="www.twitter.com"><i class="ion-social-twitter icon"></i></a></li>
+                        <li><a href="www.instagram.com"><i class="ion-social-instagram icon"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+                	<p class="creators">David Souza & Hernan Iruegas 2017</p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="copyright">&copy;Copyright</p>
+                </div>
+            </div>
+  	</footer>
+  	<!--Termina Footer-->
+    
+	<!--Inicia Modal de información de pins -->
+	<div id="myModal" class="modal">
+		<div class="modal-content2">
+			<div class="modal-header">
+			  <span id="closeModal" class="close">&times;</span>
+			  <h2>Información</h2>
+			</div>
+			<div class="modal-body">
+			  <p id="modalText">Some text in the Modal Body</p>  
+			</div>  
+		</div>
+	</div> 
+	<!--Termina Modal de información de pins-->
+</body>
+
+</html>
