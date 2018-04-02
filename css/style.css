@@ -1,0 +1,367 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing : border-box;
+}
+
+.btn-center{
+    width: 100%;
+    text-align: center;
+}
+
+.error{
+    color: red;
+}
+
+.hiddenElement{
+    display: none;
+}
+
+.dark-primary-color    { background: #795548; }
+.default-primary-color { background: #03A9F4; }
+.light-primary-color   { background: #B3E5FC; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #FF9800; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { background-color: #BDBDBD; }
+
+/******************************
+FOOTER
+******************************/
+
+footer {
+    font-size: 80%;
+    color: white;
+    overflow: hidden;
+    clear: both;    
+}
+
+.social-links{
+    list-style: none;
+    float: left;
+    margin-top: 12px;
+    margin-left: 15px;
+}
+
+.social-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.social-links li a{
+    font-size: 160%;
+    color: white;
+}
+
+.copyright{
+    float: right;
+    margin-top: 18px;
+    margin-right: 15px;
+}
+
+.creators{
+    text-align: center;
+    margin-top: 18px;  
+}
+
+.icon{
+    vertical-align: middle;
+}
+
+
+/******************************
+SUBNAV ENCUENTRA
+******************************/
+
+#subnav{
+    padding-top: 10px;
+    width: 100%;  
+}
+
+#subnav li {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+#subnav li a{
+    text-decoration: none;
+}
+
+#subnav li:hover{
+    border-bottom: 2px solid #FF9800;
+    cursor: pointer;
+}
+
+.navEncuentra{
+    margin-top: 50px;
+    height: 40px;
+    text-align: center;
+    background-color: #efefef;
+    
+}
+
+
+.hiddenElement, .hiddenSection{
+    display: none;
+}
+
+/******************************
+LISTA ENCUENTRA 
+******************************/
+
+#lista{
+    height: 100%;
+    margin-left: 20px;
+}
+
+.detail{
+    border: 2px solid #efefef;
+    height: 230px;
+    margin: 5px;
+    margin-left: 50px;
+}
+
+.detail img{
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 30%;  
+    margin-left: -15px;
+}
+
+.favFechaDir li{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.caracteristicas li{
+    display: inline-block;
+    margin-left: 10px;
+    width: 20%
+}
+
+.caracteristicas2 li{
+    width: 50%;
+}
+
+.heart{
+    font-size: 300%;
+}
+
+.heart:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.redheart{
+    color: red;
+}
+
+.selected{
+    border-bottom: 2px solid #FF9800;
+}
+
+#numProp{
+    margin-left: 30px;
+}
+
+
+/******************************
+CARRUSEL
+******************************/
+
+#myCarousel{
+    height: 100vh;
+}
+
+.carousel-inner{
+    height: 100%;
+    width: 100%;
+}
+
+
+
+html, body{
+    height: 100%
+}
+
+
+#Mapa{
+    height: 100%;
+    width: 80%;
+    float: right;
+    padding: 50px;
+}
+
+#MapaEncuentra{
+    height: 100%;
+    text-align: center;
+}
+
+#map{
+    height: 100%;
+}
+
+#filtros{
+    height: 90%;
+    width: 20%;
+    padding: 20px;
+    position: fixed;
+}
+
+#SearchhButton{
+    margin-left: 30%;
+    margin-right: 50%;
+}
+
+.radioButton{
+    margin-left: : 20px;
+}
+
+/******************************
+ROOMIES
+******************************/
+.roomie{
+    border: 2px solid #efefef;
+    height: 120px;
+    margin-bottom: 5px;
+}
+
+/******************************
+WRAPPER 
+******************************/
+#wrapperEncuentra{
+    height: 100vh;
+}
+
+
+/*EL SUPER MEGA HERMOSO MODAL!!!!!*/
+
+/* Modal Content */
+
+/* PIN MAPA */
+.modal-content2 {
+    margin-left: 15%;
+    position: fixed;
+    top: 30%;
+    height: 50%;
+    background-color: #fefefe;
+    width: 70%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #795548;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    /*background-color: #5cb85c;*/
+    color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+/******************************
+HEADER  
+******************************/
+.navbar-fixed-top{
+    height: 50px;
+}
+
+.container-fluid{
+    height: 50px;
+}
+
+
+
+
+.carousel-caption
+            {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 10;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                color: #fff;
+                text-align: center;
+                background: rgba(0,0,0,0.4);
+            }
+
+
+#dirProperty{
+    height: 30px;
+    
+    width: 400px;
+}
+
+
+/*****************************
+MI PERFIL
+*****************************/
+#div-container{
+    text-align: center;
+    margin-top: 50px;
+    height: 100%;
+}
+
+#profile-info{
+    text-align: left;
+}
+
+.center-button{
+    width: 100%;
+    text-align: center;
+}
+
+.profile-info-input{
+    width: 100%;
+}
+
+.perfil-input{
+    margin-bottom: 20px;
+}
